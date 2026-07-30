@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1150 650" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arLoop" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#92400e"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1150" height="650" fill="#ffffff"/>
+  <text x="575" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">PicoRV32: One Instruction Moving Through 5 Phases, In Order</text>
+  <text x="575" y="50" text-anchor="middle" font-size="12" fill="#6b7280">Same physical hardware, reused stage by stage — nothing runs in parallel, nothing overlaps</text>
+
+  <!-- IF -->
+  <rect x="30" y="90" width="190" height="220" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="125" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1. IF</text>
+  <text x="125" y="135" text-anchor="middle" font-size="10" fill="#dbeafe">Instruction Fetch</text>
+  <line x1="55" y1="145" x2="195" y2="145" stroke="#93c5fd" stroke-width="1"/>
+  <text x="125" y="168" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="700">Active hardware:</text>
+  <text x="125" y="188" text-anchor="middle" font-size="10" fill="#dbeafe">• Program Counter</text>
+  <text x="125" y="204" text-anchor="middle" font-size="10" fill="#dbeafe">(supplies address)</text>
+  <text x="125" y="228" text-anchor="middle" font-size="10" fill="#dbeafe">• Memory Interface</text>
+  <text x="125" y="244" text-anchor="middle" font-size="10" fill="#dbeafe">(fetches 32-bit</text>
+  <text x="125" y="258" text-anchor="middle" font-size="10" fill="#dbeafe">instruction word)</text>
+  <text x="125" y="290" text-anchor="middle" font-size="9" fill="#fca5a5" font-weight="700">shared w/ stage 4 →</text>
+
+  <!-- arrow -->
+  <line x1="220" y1="200" x2="255" y2="200" stroke="#1f2937" stroke-width="3" marker-end="url(#ar1)"/>
+
+  <!-- ID -->
+  <rect x="255" y="90" width="190" height="220" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="350" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2. ID</text>
+  <text x="350" y="135" text-anchor="middle" font-size="10" fill="#dbeafe">Instruction Decode</text>
+  <line x1="280" y1="145" x2="420" y2="145" stroke="#93c5fd" stroke-width="1"/>
+  <text x="350" y="168" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="700">Active hardware:</text>
+  <text x="350" y="188" text-anchor="middle" font-size="10" fill="#dbeafe">• Instruction Decoder</text>
+  <text x="350" y="204" text-anchor="middle" font-size="10" fill="#dbeafe">(reads opcode, figures</text>
+  <text x="350" y="218" text-anchor="middle" font-size="10" fill="#dbeafe">out R/I/S/B/U/J type)</text>
+  <text x="350" y="240" text-anchor="middle" font-size="10" fill="#dbeafe">• Register File (READ)</text>
+  <text x="350" y="256" text-anchor="middle" font-size="10" fill="#dbeafe">(fetches rs1, rs2 values)</text>
+  <text x="350" y="290" text-anchor="middle" font-size="9" fill="#fca5a5" font-weight="700">shared w/ stage 5 →</text>
+
+  <!-- arrow -->
+  <line x1="445" y1="200" x2="480" y2="200" stroke="#1f2937" stroke-width="3" marker-end="url(#ar1)"/>
+
+  <!-- EX -->
+  <rect x="480" y="90" width="190" height="220" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="575" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3. EX</text>
+  <text x="575" y="135" text-anchor="middle" font-size="10" fill="#dbeafe">Execute</text>
+  <line x1="505" y1="145" x2="645" y2="145" stroke="#93c5fd" stroke-width="1"/>
+  <text x="575" y="168" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="700">Active hardware:</text>
+  <text x="575" y="188" text-anchor="middle" font-size="10" fill="#dbeafe">• ALU</text>
+  <text x="575" y="204" text-anchor="middle" font-size="10" fill="#dbeafe">(add/sub/compare/shift,</text>
+  <text x="575" y="218" text-anchor="middle" font-size="10" fill="#dbeafe">or computes branch target)</text>
+  <text x="575" y="250" text-anchor="middle" font-size="9" fill="#fde68a">Branches/jumps update the</text>
+  <text x="575" y="264" text-anchor="middle" font-size="9" fill="#fde68a">PC here, back in stage 1</text>
+
+  <!-- arrow -->
+  <line x1="670" y1="200" x2="705" y2="200" stroke="#1f2937" stroke-width="3" marker-end="url(#ar1)"/>
+
+  <!-- MEM -->
+  <rect x="705" y="90" width="190" height="220" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="800" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">4. MEM</text>
+  <text x="800" y="135" text-anchor="middle" font-size="10" fill="#dbeafe">Memory Access</text>
+  <line x1="730" y1="145" x2="870" y2="145" stroke="#93c5fd" stroke-width="1"/>
+  <text x="800" y="168" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="700">Active hardware:</text>
+  <text x="800" y="188" text-anchor="middle" font-size="10" fill="#dbeafe">• Memory Interface</text>
+  <text x="800" y="204" text-anchor="middle" font-size="10" fill="#dbeafe">(SAME block as stage 1 —</text>
+  <text x="800" y="218" text-anchor="middle" font-size="10" fill="#dbeafe">now doing data load/store</text>
+  <text x="800" y="232" text-anchor="middle" font-size="10" fill="#dbeafe">instead of instruction fetch)</text>
+  <text x="800" y="256" text-anchor="middle" font-size="9" fill="#fde68a" font-weight="700">SKIPPED for pure ALU</text>
+  <text x="800" y="270" text-anchor="middle" font-size="9" fill="#fde68a" font-weight="700">or branch instructions</text>
+
+  <!-- arrow -->
+  <line x1="895" y1="200" x2="930" y2="200" stroke="#1f2937" stroke-width="3" marker-end="url(#ar1)"/>
+
+  <!-- WB -->
+  <rect x="930" y="90" width="190" height="220" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="1025" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">5. WB</text>
+  <text x="1025" y="135" text-anchor="middle" font-size="10" fill="#dbeafe">Write Back</text>
+  <line x1="955" y1="145" x2="1095" y2="145" stroke="#93c5fd" stroke-width="1"/>
+  <text x="1025" y="168" text-anchor="middle" font-size="10" fill="#ffffff" font-weight="700">Active hardware:</text>
+  <text x="1025" y="188" text-anchor="middle" font-size="10" fill="#dbeafe">• Register File (WRITE)</text>
+  <text x="1025" y="204" text-anchor="middle" font-size="10" fill="#dbeafe">(SAME block as stage 2 —</text>
+  <text x="1025" y="218" text-anchor="middle" font-size="10" fill="#dbeafe">now writing the ALU result</text>
+  <text x="1025" y="232" text-anchor="middle" font-size="10" fill="#dbeafe">or loaded value into rd)</text>
+
+  <!-- shared-hardware dashed connectors -->
+  <path d="M125,310 C125,400 800,400 800,310" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="5,4" fill="none"/>
+  <text x="460" y="415" text-anchor="middle" font-size="10" fill="#b91c1c" font-weight="700">Memory Interface: ONE physical block, used twice (fetch, then data) — never simultaneously</text>
+
+  <path d="M350,340 C350,440 1025,440 1025,310" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="5,4" fill="none"/>
+  <text x="690" y="460" text-anchor="middle" font-size="10" fill="#1e40af" font-weight="700">Register File: ONE physical block, used twice (read operands, then write result) — never simultaneously</text>
+
+  <!-- Loop back arrow -->
+  <path d="M1025,90 C1025,20 125,20 125,90" stroke="#92400e" stroke-width="2.5" fill="none" marker-end="url(#arLoop)"/>
+  <text x="575" y="15" text-anchor="middle" font-size="11" fill="#78350f" font-weight="700">Only after THIS instruction's WB fully completes does the NEXT instruction start at IF — no overlap, ever</text>
+
+  <!-- Example CPI note -->
+  <rect x="30" y="500" width="1090" height="110" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+  <text x="50" y="525" font-size="12" font-weight="700" fill="#111827">Two real examples (from the actual CPI table):</text>
+  <text x="50" y="548" font-size="11" fill="#374151">• ALU reg+immediate (e.g. `addi`): IF → ID → EX → WB (skips MEM entirely) = 3 cycles total</text>
+  <text x="50" y="568" font-size="11" fill="#374151">• Memory load (e.g. `lw`): IF → ID → EX → MEM → WB (uses all 5 stages) = 5 cycles total</text>
+  <text x="50" y="592" font-size="11" fill="#374151" font-style="italic">This is exactly why average CPI ≈ 4 — different instructions pass through a different SUBSET of these boxes, one at a time, never in parallel.</text>
+</svg>

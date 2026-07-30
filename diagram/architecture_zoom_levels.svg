@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1100 1000" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#374151"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1100" height="1000" fill="#ffffff"/>
+  <text x="550" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">How Everything We Built Fits Together — Three Zoom Levels</text>
+
+  <!-- ===== PANEL 1: SYSTEM LEVEL ===== -->
+  <rect x="40" y="55" width="1020" height="170" rx="10" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="60" y="80" font-size="14" font-weight="700" fill="#374151">ZOOM 3 — The Whole iAcoustic System (Task 4's block diagram)</text>
+  <text x="60" y="98" font-size="11" fill="#6b7280">This is the product Ai Linear is building. PicoSoC is just ONE of its 5 boxes.</text>
+
+  <rect x="70" y="120" width="130" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="135" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#7f1d1d">AFE</text>
+  <text x="135" y="166" text-anchor="middle" font-size="9" fill="#7f1d1d">sensor input</text>
+
+  <rect x="260" y="110" width="180" height="90" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2.5"/>
+  <text x="350" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">PicoSoC</text>
+  <text x="350" y="163" text-anchor="middle" font-size="10" fill="#dbeafe">(zoomed into below ↓)</text>
+
+  <rect x="490" y="120" width="130" height="70" rx="8" fill="#f0fdf4" stroke="#166534" stroke-width="1.5"/>
+  <text x="555" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#14532d">SPI EEPROM</text>
+  <text x="555" y="166" text-anchor="middle" font-size="9" fill="#14532d">config/coeffs</text>
+
+  <rect x="670" y="120" width="150" height="70" rx="8" fill="#eff6ff" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="745" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">AI Engine</text>
+  <text x="745" y="166" text-anchor="middle" font-size="9" fill="#1e3a8a">detects anomalies</text>
+
+  <rect x="870" y="120" width="150" height="70" rx="8" fill="#fefce8" stroke="#854d0e" stroke-width="1.5"/>
+  <text x="945" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#713f12">Wireless Tx</text>
+  <text x="945" y="166" text-anchor="middle" font-size="9" fill="#713f12">sends alerts out</text>
+
+  <line x1="200" y1="155" x2="260" y2="155" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="155" x2="490" y2="155" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="155" x2="670" y2="155" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)" opacity="0"/>
+  <line x1="440" y1="140" x2="670" y2="140" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="170" x2="870" y2="170" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- zoom connector 1->2 -->
+  <line x1="350" y1="225" x2="350" y2="255" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <text x="365" y="245" font-size="11" font-style="italic" fill="#6b7280">zoom in</text>
+
+  <!-- ===== PANEL 2: SoC LEVEL ===== -->
+  <rect x="40" y="260" width="1020" height="360" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="60" y="285" font-size="14" font-weight="700" fill="#1e3a8a">ZOOM 2 — Inside the "PicoSoC" box (this whole panel = that ONE blue box above)</text>
+  <text x="60" y="303" font-size="11" fill="#1e40af">This is the SoC level: the CPU core + memory + peripherals wired together. Task 3's "ADD" lives here.</text>
+
+  <!-- CPU core -->
+  <rect x="90" y="330" width="260" height="150" rx="8" fill="#1e3a8a" stroke="#111827" stroke-width="2.5"/>
+  <text x="220" y="360" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">CPU Core (picorv32)</text>
+  <text x="220" y="380" text-anchor="middle" font-size="10" fill="#dbeafe">the actual RV32I processor</text>
+  <text x="220" y="398" text-anchor="middle" font-size="10" fill="#fca5a5">(zoomed into below ↓)</text>
+  <text x="220" y="420" text-anchor="middle" font-size="10" fill="#dbeafe">1.2's RV32I basics = how this thinks</text>
+  <text x="220" y="438" text-anchor="middle" font-size="10" fill="#dbeafe">Task 3 KEEP/CUT = its ON/OFF settings</text>
+  <text x="220" y="456" text-anchor="middle" font-size="10" fill="#dbeafe">Env. setup = tools to build/test THIS file</text>
+
+  <!-- Internal RAM -->
+  <rect x="380" y="330" width="160" height="70" rx="8" fill="#f3f4f6" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="460" y="360" text-anchor="middle" font-size="12" font-weight="700" fill="#374151">Internal RAM</text>
+  <text x="460" y="378" text-anchor="middle" font-size="9" fill="#4b5563">firmware runs from here</text>
+
+  <!-- Existing peripherals (kept) -->
+  <rect x="380" y="415" width="160" height="65" rx="8" fill="#f3f4f6" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="460" y="440" text-anchor="middle" font-size="11" font-weight="700" fill="#374151">simpleuart</text>
+  <text x="460" y="456" text-anchor="middle" font-size="9" fill="#4b5563">debug console (kept as-is)</text>
+
+  <!-- NEW SPI master -->
+  <rect x="580" y="330" width="220" height="150" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="2.5"/>
+  <text x="690" y="358" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">NEW: General-Purpose</text>
+  <text x="690" y="375" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">SPI Master</text>
+  <text x="690" y="394" text-anchor="middle" font-size="10" fill="#166534">This is Task 3's "ADD" —</text>
+  <text x="690" y="410" text-anchor="middle" font-size="10" fill="#166534">stock PicoSoC only had a</text>
+  <text x="690" y="426" text-anchor="middle" font-size="10" fill="#166534">1-device, read-only flash port.</text>
+  <text x="690" y="444" text-anchor="middle" font-size="10" fill="#166534">This new block adds 3 chip-selects</text>
+  <text x="690" y="460" text-anchor="middle" font-size="10" fill="#166534">so PicoSoC can talk to all 3 SPI devices.</text>
+
+  <!-- internal wiring -->
+  <line x1="350" y1="365" x2="380" y2="365" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="350" y1="440" x2="380" y2="440" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="350" y1="400" x2="580" y2="400" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 3 CS outputs going to the edge of PicoSoC boundary -->
+  <line x1="800" y1="355" x2="960" y2="355" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="350" font-size="10" fill="#166534">CS0 → EEPROM</text>
+  <line x1="800" y1="400" x2="960" y2="400" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="395" font-size="10" fill="#166534">CS1 → AI Engine</text>
+  <line x1="800" y1="445" x2="960" y2="445" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="440" font-size="10" fill="#166534">CS2 → Wireless Tx</text>
+
+  <!-- 3 IRQ inputs coming back into CPU core -->
+  <line x1="960" y1="510" x2="240" y2="482" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGray)"/>
+  <text x="600" y="505" font-size="10" fill="#6b7280">3 dashed IRQ lines back to CPU core (irq_5/6/7): AFE, AI Engine, Wireless Tx — NOT the EEPROM (it has no IRQ pin)</text>
+
+  <!-- zoom connector 2->3 -->
+  <line x1="220" y1="480" x2="220" y2="640" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowGray)"/>
+  <text x="235" y="600" font-size="11" font-style="italic" fill="#6b7280">zoom in</text>
+
+  <!-- ===== PANEL 3: CPU CORE INTERNAL SETTINGS ===== -->
+  <rect x="40" y="650" width="1020" height="320" rx="10" fill="#fffbeb" stroke="#92400e" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="60" y="675" font-size="14" font-weight="700" fill="#78350f">ZOOM 1 — Inside the CPU Core box (one Verilog file, picorv32.v)</text>
+  <text x="60" y="693" font-size="11" fill="#92400e">These are ALL just parameters/switches on this ONE file. Nothing here is a separate physical chip.</text>
+
+  <rect x="70" y="715" width="460" height="230" rx="8" fill="#f0fdf4" stroke="#166534" stroke-width="1.5"/>
+  <text x="300" y="740" text-anchor="middle" font-size="13" font-weight="700" fill="#14532d">KEEP = 1 (switch turned ON)</text>
+  <text x="90" y="765" font-size="11" fill="#14532d">✓ ENABLE_IRQ / IRQ_QREGS / IRQ_TIMER — interrupts</text>
+  <text x="90" y="787" font-size="11" fill="#14532d">✓ CATCH_MISALIGN / CATCH_ILLINSN — safety traps</text>
+  <text x="90" y="809" font-size="11" fill="#14532d">✓ ENABLE_REGS_16_31 / DUALPORT — full register file</text>
+  <text x="90" y="831" font-size="11" fill="#14532d">✓ ENABLE_COUNTERS(64) — timing measurement</text>
+  <text x="90" y="860" font-size="10" fill="#166534" font-style="italic">Why: this chip's whole job is reacting fast to</text>
+  <text x="90" y="878" font-size="10" fill="#166534" font-style="italic">interrupts and juggling 4 devices at once —</text>
+  <text x="90" y="896" font-size="10" fill="#166534" font-style="italic">these switches directly support that.</text>
+
+  <rect x="570" y="715" width="460" height="230" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="800" y="740" text-anchor="middle" font-size="13" font-weight="700" fill="#7f1d1d">CUT = 0 (switch turned OFF)</text>
+  <text x="590" y="765" font-size="11" fill="#7f1d1d">✗ ENABLE_MUL / FAST_MUL / DIV — hardware math</text>
+  <text x="590" y="787" font-size="11" fill="#7f1d1d">✗ ENABLE_PCPI — external co-processor hookup</text>
+  <text x="590" y="809" font-size="11" fill="#7f1d1d">✗ BARREL_SHIFTER — fast multi-bit shifts</text>
+  <text x="590" y="831" font-size="11" fill="#7f1d1d">✗ TWO_CYCLE_COMPARE/ALU, LATCHED_MEM_RDATA</text>
+  <text x="590" y="860" font-size="10" fill="#b91c1c" font-style="italic">Why: the AI math happens in the separate AI</text>
+  <text x="590" y="878" font-size="10" fill="#b91c1c" font-style="italic">Engine box (Zoom 3) — PicoSoC never needs to</text>
+  <text x="590" y="896" font-size="10" fill="#b91c1c" font-style="italic">multiply, so this silicon would sit unused.</text>
+
+  <text x="550" y="935" text-anchor="middle" font-size="11" fill="#78350f" font-weight="700">Key point: CUT and ADD are unrelated. CUT happens INSIDE this one CPU file. ADD is a SEPARATE peripheral block bolted on at Zoom 2.</text>
+</svg>

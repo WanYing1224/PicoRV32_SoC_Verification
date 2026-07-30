@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrowSolid" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b91c1c"/>
+    </marker>
+    <marker id="arrowDashed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" fill="#ffffff"/>
+
+  <text x="500" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">iAcoustic System Block Diagram — Star Topology via PicoSoC</text>
+
+  <!-- Center: PicoSoC -->
+  <rect x="380" y="290" width="240" height="120" rx="10" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
+  <text x="500" y="340" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">PicoSoC (RV32)</text>
+  <text x="500" y="362" text-anchor="middle" font-size="12" fill="#dbeafe">Central Traffic Controller</text>
+  <text x="500" y="380" text-anchor="middle" font-size="11" fill="#dbeafe">SPI Master · 3 external IRQ inputs</text>
+
+  <!-- AFE (top-left) -->
+  <rect x="60" y="70" width="220" height="90" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="170" y="105" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">Analog Front End</text>
+  <text x="170" y="125" text-anchor="middle" font-size="11" fill="#7f1d1d">(microphone / vibration sensor)</text>
+  <text x="170" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">HIGHEST PRIORITY — real-time</text>
+
+  <!-- SPI EEPROM (bottom-left) -->
+  <rect x="60" y="540" width="220" height="90" rx="10" fill="#f0fdf4" stroke="#166534" stroke-width="2"/>
+  <text x="170" y="575" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">SPI EEPROM</text>
+  <text x="170" y="595" text-anchor="middle" font-size="11" fill="#14532d">Config · ML coefficients · calibration</text>
+  <text x="170" y="613" text-anchor="middle" font-size="11" fill="#166534">No IRQ pin — polled via WIP</text>
+
+  <!-- AI Processing Engine (top-right) -->
+  <rect x="720" y="70" width="220" height="100" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="2"/>
+  <text x="830" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">AI Processing Engine</text>
+  <text x="830" y="120" text-anchor="middle" font-size="11" fill="#1e3a8a">(ARM-based, assumed)</text>
+  <text x="830" y="138" text-anchor="middle" font-size="11" fill="#1e3a8a">Init · coeff load · status · anomaly result</text>
+  <text x="830" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="#1e40af">Dedicated IRQ: status/anomaly</text>
+
+  <!-- Wireless Transmitter (bottom-right) -->
+  <rect x="720" y="540" width="220" height="90" rx="10" fill="#fefce8" stroke="#854d0e" stroke-width="2"/>
+  <text x="830" y="575" text-anchor="middle" font-size="15" font-weight="700" fill="#713f12">Wireless Transmitter</text>
+  <text x="830" y="595" text-anchor="middle" font-size="11" fill="#713f12">Anomaly report + system status</text>
+  <text x="830" y="613" text-anchor="middle" font-size="11" fill="#854d0e">Event-triggered only</text>
+
+  <!-- AFE -> PicoSoC: SPI data (solid, red, bold) -->
+  <line x1="230" y1="160" x2="410" y2="295" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrowRed)"/>
+  <text x="230" y="215" font-size="11" fill="#b91c1c" font-weight="700">SPI: sensor data</text>
+  <text x="230" y="230" font-size="11" fill="#b91c1c" font-weight="700">(continuous stream)</text>
+
+  <!-- AFE -> PicoSoC: IRQ (dashed) -->
+  <line x1="260" y1="160" x2="440" y2="292" stroke="#6b7280" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowDashed)"/>
+  <text x="330" y="260" font-size="10" fill="#6b7280">IRQ: data-ready</text>
+
+  <!-- PicoSoC <-> EEPROM: SPI (solid, bidirectional) -->
+  <line x1="280" y1="580" x2="400" y2="405" stroke="#166534" stroke-width="2.5" marker-end="url(#arrowSolid)" marker-start="url(#arrowSolid)"/>
+  <text x="230" y="480" font-size="11" fill="#14532d">SPI: read config /</text>
+  <text x="230" y="495" font-size="11" fill="#14532d">coefficients (mostly read)</text>
+
+  <!-- PicoSoC <-> AI Engine: SPI (solid, bidirectional) -->
+  <line x1="600" y1="330" x2="740" y2="165" stroke="#1e40af" stroke-width="2.5" marker-end="url(#arrowSolid)" marker-start="url(#arrowSolid)"/>
+  <text x="620" y="230" font-size="11" fill="#1e3a8a">SPI: init / coeff dl /</text>
+  <text x="620" y="245" font-size="11" fill="#1e3a8a">cfg / relayed data /</text>
+  <text x="620" y="260" font-size="11" fill="#1e3a8a">status+result reads</text>
+
+  <!-- AI Engine -> PicoSoC: IRQ (dashed) -->
+  <line x1="770" y1="170" x2="615" y2="315" stroke="#6b7280" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowDashed)"/>
+
+  <!-- PicoSoC -> Wireless Tx: SPI (solid, one direction) -->
+  <line x1="600" y1="375" x2="740" y2="555" stroke="#854d0e" stroke-width="2.5" marker-end="url(#arrowSolid)"/>
+  <text x="620" y="470" font-size="11" fill="#713f12">SPI: anomaly report</text>
+  <text x="620" y="485" font-size="11" fill="#713f12">+ system status</text>
+
+  <!-- Legend -->
+  <rect x="60" y="660" width="880" height="30" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="75" y1="675" x2="115" y2="675" stroke="#111827" stroke-width="2.5"/>
+  <text x="122" y="679" font-size="11" fill="#111827">Solid = shared SPI bus (PicoSoC is sole master)</text>
+  <line x1="480" y1="675" x2="520" y2="675" stroke="#6b7280" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="527" y="679" font-size="11" fill="#111827">Dashed = dedicated interrupt (GPIO) line</text>
+</svg>
