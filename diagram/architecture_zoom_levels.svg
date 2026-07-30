@@ -76,21 +76,26 @@
   <text x="690" y="394" text-anchor="middle" font-size="10" fill="#166534">This is Task 3's "ADD" —</text>
   <text x="690" y="410" text-anchor="middle" font-size="10" fill="#166534">stock PicoSoC only had a</text>
   <text x="690" y="426" text-anchor="middle" font-size="10" fill="#166534">1-device, read-only flash port.</text>
-  <text x="690" y="444" text-anchor="middle" font-size="10" fill="#166534">This new block adds 3 chip-selects</text>
-  <text x="690" y="460" text-anchor="middle" font-size="10" fill="#166534">so PicoSoC can talk to all 3 SPI devices.</text>
+  <text x="690" y="444" text-anchor="middle" font-size="10" fill="#166534">This new block adds 4 chip-selects</text>
+  <text x="690" y="460" text-anchor="middle" font-size="10" fill="#166534">so PicoSoC can talk to all 4 SPI devices.</text>
 
   <!-- internal wiring -->
   <line x1="350" y1="365" x2="380" y2="365" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
   <line x1="350" y1="440" x2="380" y2="440" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
   <line x1="350" y1="400" x2="580" y2="400" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- 3 CS outputs going to the edge of PicoSoC boundary -->
-  <line x1="800" y1="355" x2="960" y2="355" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="960" y="350" font-size="10" fill="#166534">CS0 → EEPROM</text>
-  <line x1="800" y1="400" x2="960" y2="400" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="960" y="395" font-size="10" fill="#166534">CS1 → AI Engine</text>
-  <line x1="800" y1="445" x2="960" y2="445" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="960" y="440" font-size="10" fill="#166534">CS2 → Wireless Tx</text>
+  <!-- 4 CS outputs going to the edge of PicoSoC boundary -->
+  <line x1="800" y1="345" x2="960" y2="345" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="340" font-size="10" font-weight="700" fill="#166534">CS0 → AFE (Priority)</text>
+
+  <line x1="800" y1="380" x2="960" y2="380" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="375" font-size="10" fill="#166534">CS1 → EEPROM</text>
+
+  <line x1="800" y1="415" x2="960" y2="415" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="410" font-size="10" fill="#166534">CS2 → AI Engine</text>
+
+  <line x1="800" y1="450" x2="960" y2="450" stroke="#166534" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="960" y="445" font-size="10" fill="#166534">CS3 → Wireless Tx</text>
 
   <!-- 3 IRQ inputs coming back into CPU core -->
   <line x1="960" y1="510" x2="240" y2="482" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGray)"/>
