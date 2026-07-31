@@ -48,4 +48,4 @@
 
 ## State-Machine Diagram
 
-![category_a_state_machine.svg](category_a_state_machine.svg)
+![category_a_state_machine.svg](/diagram/category_a_state_machine.svg)
