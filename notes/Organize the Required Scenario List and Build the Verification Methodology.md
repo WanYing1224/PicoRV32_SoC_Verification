@@ -6,7 +6,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category A: Power / Reset / Lifecycle (6 scenarios)
 
-[Procedure of Category A](Procedure of Category A.md)
+[Procedure of Category A](Procedure%20of%20Category%20A.md)
 
 - Power-up initialization
 - Startup and recovery
@@ -19,7 +19,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category B: Data Path & Communication (3 scenarios)
 
-[Procedure of Category B](Procedure of Category B.md)
+[Procedure of Category B](Procedure%20of%20Category%20B.md)
 
 - EEPROM read/write verification
 - Downloading ML coefficients into the AI engine
@@ -29,7 +29,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category C: Concurrency & Bus Arbitration (4 scenarios)
 
-[Procedure of Category C](Procedure of Category C.md)
+[Procedure of Category C](Procedure%20of%20Category%20C.md)
 
 - Simultaneous sensor acquisition and EEPROM access
 - Simultaneous wireless transmission and sensor acquisition
@@ -40,7 +40,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category D: Interrupt Handling (1 scenario, kept separate — too central to bury)
 
-[Procedure of Category D](Procedure of Category D.md)
+[Procedure of Category D](Procedure%20of%20Category%20D.md)
 
 - Interrupt handling and collisions
 
@@ -48,7 +48,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category E: Fault / Error Handling (3 scenarios)
 
-[Procedure of Category E](Procedure of Category E.md)
+[Procedure of Category E](Procedure%20of%20Category%20E.md)
 
 - Buffer overflow and underflow
 - Timeout handling
@@ -58,7 +58,7 @@ I've organized these into 6 categories based on what's actually being tested, an
 
 ### Category F: Stress & Performance (2 scenarios)
 
-[Procedure of Category F](Procedure of Category F.md)
+[Procedure of Category F](Procedure%20of%20Category%20F.md)
 
 - Worst-case traffic conditions
 - Long-duration stress testing
