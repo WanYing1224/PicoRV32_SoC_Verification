@@ -34,9 +34,8 @@ I traced the actual interrupt logic in `picorv32.v`, and found something that ma
 | D3 | Rapid repeated interrupts | Directed test, repeated pulse injection | Fire same IRQ line twice before it's serviced | Second pulse remains latched, not lost | Pending bit still set after first pulse, before handler runs | Medium |
 
 <aside>
-⚠️
 
-#### **This is worth saying explicitly in the room:**
+#### **⚠️ This is worth saying explicitly in the room:**
 
 D2 is arguably the single most important finding in the whole verification plan, on the same level as C3. It's not a hypothetical edge case — it's a direct consequence of how this specific CPU implements interrupts, and it means "keep every handler short" isn't just good practice here, it's the load-bearing assumption that makes the AFE's real-time guarantee actually true.
 
