@@ -30,9 +30,8 @@
 | B3 | Continuous sensor acquisition | Interrupt-rate sweep + latency measurement | AFE IRQs fired at increasing rates, using `ENABLE_COUNTERS` for timing | Zero dropped samples up to a found ceiling rate | Documented max sustainable rate with zero drops | Highest (per doc) |
 
 <aside>
-⚠️
 
-#### **One thing worth noticing across all three:**
+#### **⚠️ One thing worth noticing across all three:**
 
 Every single test here directly reuses infrastructure from earlier work. B1 needs the same EEPROM model Category A's brown-out test would also use, B2 depends on B1 working first (you can't verify coefficient download without trustworthy EEPROM reads), and B3 reuses the counter hardware we already justified keeping in Task 3. That's exactly the "shared work across categories" payoff.
 
