@@ -1,9 +1,7 @@
 # Self-Generated Scenarios
 
 <aside>
-🚩
-
-Two genuinely new ones. Not re-labels of what's already folded into B1/C3/D1. Both came from a real gap-hunting question: "what could still go wrong that none of the 19 required scenarios actually cover?"
+🚩 Two genuinely new ones. Not re-labels of what's already folded into B1/C3/D1. Both came from a real gap-hunting question: "what could still go wrong that none of the 19 required scenarios actually cover?"
 
 </aside>
 
@@ -36,8 +34,6 @@ Two genuinely new ones. Not re-labels of what's already folded into B1/C3/D1. Bo
 | G3 | Register file capacity under load (verifies Task 3 KEEP) | Reuse F1's stress scenario, monitor register spilling | Run F1's combined worst-case traffic while all 4 transaction contexts stay concurrently active | Full 32-reg/dual-port file avoids excessive spilling under load | Quantified spill count supports the Task 3 KEEP justification | Medium — closes the one Task 3 KEEP decision without direct test coverage until now |
 
 <aside>
-🚩
-
-Both of these are good material for the presentation specifically *because* they're not just checkbox completion.G1 catches an unstated assumption, and G2 identifies a second real architectural gap the same way the SPI master did in Task 3.
+🚩 Both of these are good material for the presentation specifically *because* they're not just checkbox completion.G1 catches an unstated assumption, and G2 identifies a second real architectural gap the same way the SPI master did in Task 3.
 
 </aside>
