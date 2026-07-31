@@ -36,9 +36,8 @@ This category directly verifies two of Task 3's KEEP decisions ( `ENABLE_IRQ_TIM
 | E3 | Communication failures | Directed fault injection | Misaligned access, illegal opcode, corrupted SPI response | `CATCH_MISALIGN`/`CATCH_ILLINSN` trap cleanly; corrupted data caught by sanity check | All 3 fault types detected, none silently accepted as valid | Medium-high |
 
 <aside>
-⚠️
 
-#### **Worth noting out loud:**
+#### **⚠️ Worth noting out loud:**
 
 This category is a good demonstration that the KEEP decisions from Task 3 weren't arbitrary — `ENABLE_IRQ_TIMER` and `CATCH_MISALIGN`/`CATCH_ILLINSN` are the literal mechanisms E2 and E3 depend on. If those parameters had been cut instead, this entire category would have no hardware safety net to test against.
 
