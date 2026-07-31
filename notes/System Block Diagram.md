@@ -1,9 +1,9 @@
 # System Block Diagram
 
 <aside>
-🎯
 
-**Topology confirmed from the assignment doc:** this is a **star topology** — PicoSoC is explicitly "the central embedded traffic controller." All 4 other blocks connect only THROUGH PicoSoC, never directly to each other.
+**🎯 Topology confirmed from the assignment doc:**  
+This is a **star topology** — PicoSoC is explicitly "the central embedded traffic controller." All 4 other blocks connect only THROUGH PicoSoC, never directly to each other.
 
 </aside>
 
@@ -32,9 +32,9 @@
 - **Dashed lines** = dedicated interrupt (GPIO) line, separate from the SPI bus itself
 
 <aside>
-✅
 
-**Corrected finding (consistent with the Architecture Evaluation page):** only 3 of the 4 peripheral blocks actually generate interrupts — AFE, AI Engine, and Wireless Tx. The EEPROM has no interrupt pin at all (standard for SPI EEPROMs) and is purely polled. The stock `picosoc.v` already exposes exactly 3 external IRQ lines (`irq_5/6/7`), which lines up with what this system actually needs — no widening required.
+**✅ Corrected finding (consistent with the Architecture Evaluation page):**  
+Only 3 of the 4 peripheral blocks actually generate interrupts — AFE, AI Engine, and Wireless Tx. The EEPROM has no interrupt pin at all (standard for SPI EEPROMs) and is purely polled. The stock `picosoc.v` already exposes exactly 3 external IRQ lines (`irq_5/6/7`), which lines up with what this system actually needs — no widening required.
 
 </aside>
 
