@@ -4,9 +4,7 @@
 > 
 
 <aside>
-⚠️
-
-This category exists specifically to stress-test Task 3's biggest architectural call — the new multi-CS SPI master. Every scenario here asks some version of "with one master and one bus, but four devices that all want attention, does the traffic controller actually control traffic?”
+⚠️ This category exists specifically to stress-test Task 3's biggest architectural call — the new multi-CS SPI master. Every scenario here asks some version of "with one master and one bus, but four devices that all want attention, does the traffic controller actually control traffic?”
 
 </aside>
 
@@ -42,9 +40,8 @@ This category exists specifically to stress-test Task 3's biggest architectural 
 | C4 | Wait-state analysis | Directed test, `mem_ready` delay injection | Sweep `mem_ready` delay from 0 to a large bounded value | CPU stalls correctly every time, latches only on `mem_ready` | No early latch, no data corruption, at every delay value tested | Medium-high |
 
 <aside>
-⚠️
 
-#### **Worth saying out loud in the presentation:**
+#### **⚠️ Worth saying out loud in the presentation:**
 
 C3 is arguably the single most important scenario in the entire verification plan, because it's the one that either validates or invalidates the biggest architectural decision from Task 3. If this one passes, the SPI master addition is proven correct; if it doesn't, that's exactly the kind of finding that would send you back to revise the architecture.
 
