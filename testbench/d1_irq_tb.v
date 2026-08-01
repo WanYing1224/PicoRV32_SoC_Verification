@@ -44,7 +44,7 @@ module d1_irq_tb #(
 		end
 	end
 
-	picorv32_wrapper #(
+	picorv32_wrapper_D1 #(
 		.AXI_TEST (AXI_TEST),
 		.VERBOSE  (VERBOSE)
 	) top (
