@@ -1,7 +1,7 @@
 // picorv32_wrapper.v - wraps the real picorv32_axi core + axi4_memory,
 // with scripted IRQ stimulus for D1 (replaces the repo's free-running pattern)
 
-module picorv32_wrapper #(
+module picorv32_wrapper_D1 #(
 	parameter AXI_TEST = 0,
 	parameter VERBOSE = 0
 ) (
