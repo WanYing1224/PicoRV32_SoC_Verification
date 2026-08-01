@@ -1,0 +1,114 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+mem              0x00000000         0x00018000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.memory         0x00000000      0xa40
+                0x00000000                        . = 0x0
+ start*(.text)
+ .text          0x00000000      0x69c start.o
+                0x00000504                srli_ret
+                0x00000504                bgeu_ret
+                0x00000504                lbu_ret
+                0x00000504                andi_ret
+                0x00000504                div_ret
+                0x00000504                ori_ret
+                0x00000504                mulhsu_ret
+                0x00000504                blt_ret
+                0x00000504                lb_ret
+                0x00000504                xor_ret
+                0x00000504                slt_ret
+                0x00000504                lw_ret
+                0x00000504                jalr_ret
+                0x00000504                add_ret
+                0x00000504                xori_ret
+                0x00000504                srai_ret
+                0x00000504                rem_ret
+                0x00000504                simple_ret
+                0x00000504                mul_ret
+                0x00000504                slti_ret
+                0x00000504                slli_ret
+                0x00000504                lhu_ret
+                0x00000504                lui_ret
+                0x00000504                or_ret
+                0x00000504                sw_ret
+                0x00000504                sra_ret
+                0x00000504                beq_ret
+                0x00000504                remu_ret
+                0x00000504                mulh_ret
+                0x00000504                and_ret
+                0x00000504                mulhu_ret
+                0x00000504                bge_ret
+                0x00000504                sub_ret
+                0x00000504                auipc_ret
+                0x00000504                sh_ret
+                0x00000504                sll_ret
+                0x00000504                jal_ret
+                0x00000504                j_ret
+                0x00000504                lh_ret
+                0x00000504                bne_ret
+                0x00000504                sb_ret
+                0x00000504                divu_ret
+                0x00000504                bltu_ret
+                0x00000504                srl_ret
+                0x00000504                addi_ret
+                0x00000554                hard_mul
+                0x0000055c                hard_mulh
+                0x00000564                hard_mulhsu
+                0x0000056c                hard_mulhu
+                0x00000574                hard_div
+                0x0000057c                hard_divu
+                0x00000584                hard_rem
+                0x0000058c                hard_remu
+ *(.text)
+ .text          0x0000069c       0xac print.o
+                0x0000069c                print_chr
+                0x000006a8                print_str
+                0x000006c4                print_dec
+                0x00000710                print_hex
+ .text          0x00000748      0x174 d2_test.o
+                0x00000748                irq
+                0x00000898                hello
+ *(*)
+ .data          0x000008bc        0x0 start.o
+ .bss           0x000008bc        0x0 start.o
+ .riscv.attributes
+                0x000008bc       0x28 start.o
+ .data          0x000008e4        0x0 print.o
+ .bss           0x000008e4        0x0 print.o
+ .rodata.str1.4
+                0x000008e4       0xe2 print.o
+                                 0x11 (size before relaxing)
+ .comment       0x000009c6       0x18 print.o
+                                 0x19 (size before relaxing)
+ .note.GNU-stack
+                0x000009de        0x0 print.o
+ .riscv.attributes
+                0x000009de       0x2a print.o
+ .data          0x00000a08        0x0 d2_test.o
+ .bss           0x00000a08        0x0 d2_test.o
+ .rodata.str1.4
+                0x00000a08        0x0 d2_test.o
+                                 0xce (size before relaxing)
+ .sbss          0x00000a08        0xc d2_test.o
+ .comment       0x00000a14        0x0 d2_test.o
+                                 0x19 (size before relaxing)
+ .note.GNU-stack
+                0x00000a14        0x0 d2_test.o
+ .riscv.attributes
+                0x00000a14       0x2a d2_test.o
+                0x00000a3e                        end = .
+                0x00000a40                        . = ALIGN (0x4)
+ *fill*         0x00000a3e        0x2 
+LOAD start.o
+LOAD print.o
+LOAD d2_test.o
+LOAD /usr/lib/gcc/riscv64-unknown-elf/14.2.0/rv32im/ilp32/libgcc.a
+OUTPUT(firmware.elf elf32-littleriscv)
