@@ -190,7 +190,7 @@ With this change, the pending register correctly picked up the AFE bit, and the 
 #### Fireware:
 
 ```bash
-# build c1_test.c the same way as before (start.o/print.o already exist)
+PREFIX=riscv64-unknown-elf-
 ${PREFIX}gcc -c -mabi=ilp32 -march=rv32im -Os -ffreestanding -nostdlib -o c1_test.o c1_test.c
 ${PREFIX}gcc -Os -mabi=ilp32 -march=rv32im -ffreestanding -nostdlib -o firmware.elf \
     -Wl,--build-id=none,-Bstatic,-T,sections.lds,-Map,firmware.map,--strip-debug \
