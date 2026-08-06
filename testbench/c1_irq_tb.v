@@ -21,7 +21,7 @@ module c1_irq_tb #(
 			$dumpfile("c1_irq_tb.vcd");
 			$dumpvars(0, c1_irq_tb);
 		end
-		repeat (1000000) @(posedge clk);
+		repeat (200000) @(posedge clk);
 		$display("TIMEOUT");
 		$finish;
 	end
