@@ -1,23 +1,108 @@
 # Ai Linear Internship – PicoSoC Verification & Test Engineering Challenge
 
-**Authors**: [Kevelyn Lin](https://github.com/WanYing1224)
+**Author**: [Kevelyn Lin](https://github.com/WanYing1224)
 
-### ✅ Working Plan
-&#x09;
+## Overview
 
-|**Date**|**Focus**|
-|-|-|
-|7/29 Wednesday|Skim references fast (repo structure, RISC-V/SPI basics, EEPROM datasheet — no need for deep reading, just enough to reason confidently). Set up environment (clone repo, install Icarus/Verilator, RISC-V toolchain). Complete the PicoSoC architecture evaluation (keep/cut/add + justification). Start the system block diagram.|
-|7/30 Thursday|Finish block diagram(s). Build the full verification strategy (all listed scenarios + your own additions). Build the test matrix.|
-|7/31 Friday|Draft test software (pseudocode/skeleton, implement 1-2 key tests if time allows). Assemble a full rough draft of the presentation slides covering every section. Write out assumptions + qualification questions.|
-|8/1-3 Saturday - Monday|Trip. No active work. (Optional: skim your own slides on your phone once, purely passive, no new content.)|
-|8/4 Tuesday|Polish slides, refine any test code, rehearse the presentation out loud, prep for likely Q\&A. This is now a buffer day, not a build day.|
-|8/5 Wednesday|Extra cushion if the presentation date lands later — deepen Q\&A prep, tighten technical depth, do a mock run-through with me.|
+This repository contains the architecture evaluation, verification strategy, and test software
+for AI Linear's PicoSoC Verification & Test Engineering Challenge. PicoSoC (built on the real
+[PicoRV32](https://github.com/YosysHQ/picorv32) RV32I core) is evaluated and extended to serve as
+the central traffic controller for the iAcoustic platform, coordinating an Analog Front End, an
+SPI EEPROM, an AI Processing Engine, and a Wireless Transmitter.
 
+## Key Results
 
+- **Architecture evaluation**: PicoRV32 configuration parameters reviewed individually and either
+  kept, cut, or flagged as an addition, with a stated reason for each, not left at defaults.
+- **One architectural gap identified**: stock PicoSoC's SPI interface is a single chip select,
+  read only path built for booting from flash. It cannot serve as a general purpose SPI master
+  for the four devices this system needs. A new SPI master peripheral is proposed to close this
+  gap.
+- **Verification strategy**: 24 scenarios designed across 7 risk categories (power and reset,
+  data path, concurrency, interrupts, faults, stress, and self generated scenarios).
+- **4 scenarios fully implemented and verified on real RTL simulation**, not just designed:
+  - `B1` — EEPROM read/write verification, 4 real test cases, all passing
+  - `D1` — Simultaneous IRQ collision, both interrupt bits correctly captured in one entry
+  - `D2` — Non preemption worst case latency, measured directly from the `irq_active` signal:
+    **83,116 cycles**
+  - `C1` — Same AFE signal, serviced during ordinary foreground code instead of behind another
+    handler: **~150 cycles**, a direct, measured contrast to D2
+- **10 documented assumptions and 14 qualification questions** for AI Linear, covering protocol,
+  timing, architecture, and production readiness gaps this challenge surfaced.
 
-&#x09;	
+## Repository Structure
 
-&#x09;			
+```
+diagram/       system block diagram, state machine, and other architecture visuals
+doc/           original assignment documents from AI Linear
+firmware/      RISC-V C firmware for each implemented test (b1 / d1 / d2 / c1)
+testbench/     Verilog testbenches and behavioral models (EEPROM model, IRQ harness,
+               core wrapper variants, axi4 memory model)
+notes/         working notes from architecture evaluation and verification design
+test_results/  real simulation output logs for B1, D1, D2, and C1
+```
 
+## Toolchain (exact versions used for every result in this repo)
 
+```
+picorv32          @ 87c89ac
+icarus verilog    12.0
+riscv64-unknown-elf-gcc  14.2.0
+ubuntu            26.04 LTS (WSL2)
+```
+
+## Building and Running a Test
+
+The pattern is the same for all four implemented tests, shown here with `B1` (EEPROM).
+Substitute `b1` for `d1`, `d2`, or `c1` to build and run any of the others.
+
+**1. Build the firmware:**
+```bash
+cd firmware
+PREFIX=riscv64-unknown-elf-
+${PREFIX}gcc -c -mabi=ilp32 -march=rv32im -o start.o start.S
+${PREFIX}gcc -c -mabi=ilp32 -march=rv32im -Os -ffreestanding -nostdlib -o print.o print.c
+${PREFIX}gcc -c -mabi=ilp32 -march=rv32im -Os -ffreestanding -nostdlib -o b1_test.o b1_test.c
+${PREFIX}gcc -Os -mabi=ilp32 -march=rv32im -ffreestanding -nostdlib -o firmware.elf \
+    -Wl,--build-id=none,-Bstatic,-T,sections.lds,-Map,firmware.map,--strip-debug \
+    start.o print.o b1_test.o -lgcc
+${PREFIX}objcopy -O binary firmware.elf firmware.bin
+python3 makehex.py firmware.bin 32768 > firmware.hex
+```
+
+**2. Compile and run the testbench:**
+```bash
+cd ../testbench
+iverilog -o b1_irq_tb.vvp b1_irq_tb.v picorv32_wrapper_B1.v axi4_memory.v eeprom_model.v picorv32.v
+vvp b1_irq_tb.vvp +firmware=../firmware/firmware.hex
+```
+
+Expected output for each test is saved in `test_results/` for comparison.
+
+## Verification Strategy Summary
+
+| Category | Focus | Scenarios |
+|---|---|---|
+| A — Power / Reset / Lifecycle | State machine transitions | 6 |
+| B — Data Path & Communication | EEPROM protocol, coefficient download | 3 |
+| C — Concurrency & Bus Arbitration | Directly tests the new SPI master | 4 |
+| D — Interrupt Handling | Non preemption, collision | 3 |
+| E — Fault / Error Handling | Overflow, timeout, comm failures | 3 |
+| F — Stress & Performance | Combined worst case, long duration | 2 |
+| G — Self Generated | SPI mode, watchdog, register capacity | 3 |
+
+Full scenario detail, the complete test matrix, assumptions list, and qualification questions
+are maintained separately and available on request.
+
+## Original Working Plan
+
+Kept here as a record of how the week was actually scheduled.
+
+| Date | Focus |
+|---|---|
+| 7/29 Wed | Skim references, set up environment, complete architecture evaluation, start block diagram |
+| 7/30 Thu | Finish block diagram, build full verification strategy and test matrix |
+| 7/31 Fri | Draft test software, assemble rough presentation draft, write assumptions and qualification questions |
+| 8/1 to 8/3 | Trip, no active work |
+| 8/4 Tue | Polish slides, refine test code, rehearse presentation, prep Q&A |
+| 8/5 Wed | Buffer day, deepen Q&A prep and technical depth |
