@@ -44,7 +44,7 @@ test_results/  real simulation output logs for B1, D1, D2, and C1
 ## Toolchain (exact versions used for every result in this repo)
 
 - **PicoRV32 Repo:** [PicoRV32](https://github.com/YosysHQ/picorv32) @ [commit 87c89ac](https://github.com/YosysHQ/picorv32/commit/87c89acc18994c8cf9a2311e871818e87d304568)
-- **Verilog Simulator:** [icarus verilog]((https://github.com/steveicarus/iverilog)) 12.0 
+- **Verilog Simulator:** [icarus verilog](https://github.com/steveicarus/iverilog) 12.0 
 - **RISC-V Cross Compiler:** [RISC-V GNU Toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) (`riscv64-unknown-elf-gcc` 14.2.0) 
 - **Operating System:** [Ubuntu](https://ubuntu.com) 26.04 LTS, via [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
 
