@@ -29,7 +29,7 @@ module eeprom_model #(
     reg [7:0]  opcode;
     reg [6:0]  addr;
     reg [7:0]  mem [0:MEM_BYTES-1];
-    reg        WEL, WIP;
+    reg        WEL, WIP;           // WEL = write enable latch, WIP = write in progress
     reg [31:0] write_timer;
     reg        wrote_this_frame;   // per-frame flag - do NOT use a cumulative counter here
 
