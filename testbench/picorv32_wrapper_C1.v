@@ -25,6 +25,7 @@ module picorv32_wrapper_c1 #(
 
 		repeat (8000) @(posedge clk);
 		irq[5] = 1;
+		$display("[C1] AFE asserted at cycle %0d", $time/10);
 		repeat (150000) @(posedge clk);
 		irq[5] = 0;
 	end
