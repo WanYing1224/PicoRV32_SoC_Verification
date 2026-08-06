@@ -34,7 +34,6 @@ SPI EEPROM, an AI Processing Engine, and a Wireless Transmitter.
 
 ```
 diagram/       system block diagram, state machine, and other architecture visuals
-doc/           original assignment documents from AI Linear
 firmware/      RISC-V C firmware for each implemented test (b1 / d1 / d2 / c1)
 testbench/     Verilog testbenches and behavioral models (EEPROM model, IRQ harness,
                core wrapper variants, axi4 memory model)
@@ -44,12 +43,11 @@ test_results/  real simulation output logs for B1, D1, D2, and C1
 
 ## Toolchain (exact versions used for every result in this repo)
 
-```
-picorv32          @ 87c89ac
-icarus verilog    12.0
-riscv64-unknown-elf-gcc  14.2.0
-ubuntu            26.04 LTS (WSL2)
-```
+- **PicoRV32 Repo:** [PicoRV32](https://github.com/YosysHQ/picorv32) @ [commit 87c89ac](https://github.com/YosysHQ/picorv32/commit/87c89acc18994c8cf9a2311e871818e87d304568)
+- **Verilog Simulator:** [icarus verilog]((https://github.com/steveicarus/iverilog)) 12.0 
+- **RISC-V Cross Compiler:** [RISC-V GNU Toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) (`riscv64-unknown-elf-gcc` 14.2.0) 
+- **Operating System:** [Ubuntu](https://ubuntu.com) 26.04 LTS, via [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+
 
 ## Building and Running a Test
 
