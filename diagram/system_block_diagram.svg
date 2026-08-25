@@ -13,7 +13,7 @@
 
   <rect x="0" y="0" width="1000" height="700" fill="#ffffff"/>
 
-  <text x="500" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">iAcoustic System Block Diagram — Star Topology via PicoSoC</text>
+  <text x="500" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#111827">System Block Diagram — Star Topology via PicoSoC</text>
 
   <!-- Center: PicoSoC -->
   <rect x="380" y="290" width="240" height="120" rx="10" fill="#1e3a8a" stroke="#111827" stroke-width="2"/>
